@@ -1,2 +1,23 @@
 # weather-dashboard
-Challenge 008 Creating a weather forecast dashboard using a weather API
+
+## Description
+
+
+
+
+## Installation
+
+N/A
+
+## Usage
+
+
+
+
+## Credits
+
+N/A
+
+## License
+
+Please see the LICENSE in the repository.
