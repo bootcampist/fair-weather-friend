@@ -26,7 +26,7 @@ let clearBtn = document.createElement('button');
 
 function queryInfo (input) {
     const query = input;
-    const geocode = `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${apiKey}`;
+    const geocode = `https://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${apiKey}`;
     
     //Fetch request
     fetch(geocode)
@@ -140,7 +140,6 @@ function sortData () {
     //Icons
     allIcons = iconArray;
     iconArray = iconArray.filter((icon)=> icon.includes('d'));
-    // console.log(iconArray, humidArray);
 
     //Humidity
     sortedHumidity = humidArray.sort((a,b)=>{return b-a});
