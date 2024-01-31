@@ -1,9 +1,11 @@
 body {
     padding:0;
     margin: 0;
-    background-image: url(../images/mountains03.png);
+    background-image: url(../images/land02.webp);
     background-size: cover;
-    color: #48484a;
+    background-repeat: no-repeat;
+    font-family: 'Roboto', sans-serif;
+    color: rgb(77, 98, 168, 0.9);
 }
 
 #container {
@@ -37,6 +39,7 @@ body {
     padding: 10px;
     width: 25vw;
     margin-bottom: 10px;
+    color: rgb(77, 98, 168, 0.9);
 }
 
 #search-button {
@@ -50,6 +53,29 @@ body {
     margin-bottom: 10px;
 }
 
+#clear-button {
+    background-color: rgb(77, 98, 168, 0.9);
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    padding: 10px;
+    width: 12vw;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 8px 0px;
+}
+
+#search-button:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #ec6e4c;
+}
+
+#clear-button:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: rgb(77, 98, 168, 0.9);
+}
+
 ul {
     list-style: none;
     outline: none;
@@ -58,7 +84,7 @@ ul {
     width: 25vw;
 }
 
-li{
+li {
     margin-bottom: 15px;
     width: 100%;
   }
@@ -68,10 +94,16 @@ li{
     text-decoration: none;
     outline: none;
     border: none;
-    color: #48484a;
+    color: rgb(77, 98, 168, 1);
     padding: 5px;
     border-radius: 15px;
     width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 2px 8px 0px;
+}
+
+.history-button:hover {
+    background-color: rgb(77, 98, 168, 0.9);
+    color: white;
 }
 
 #results {
@@ -87,10 +119,12 @@ li{
 }
 
 #today-container {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.2);
+    /* background-color: transparent; */
     border-radius: 15px;
     width: 100%;
-    margin: 10px;
+    margin: 20px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
 }
 
 #today-name {grid-area: name;}
@@ -106,16 +140,16 @@ li{
     grid-template-areas:
     'name name name'
     'date date date'
-    'icon1 temp humidity'
-    'icon1 temp wind';
-    gap: 10px;
+    'humidity temp icon1'
+    'wind temp icon1';
+    gap: 3px;
     text-align: center;
     margin: auto;
     font-size: 2rem;
 }
 
 #today-name {
-    font-size: 3.5rem;
+    font-size: 3.7rem;
     display: flex;
     justify-content: center;
     margin-top: 10px;
@@ -128,7 +162,7 @@ li{
 }
 
 #today-icon{
-    margin: -40px -80px -40px 0;
+    margin: -40px 0 -40px -50px;
 }
 
 #today-temp {
@@ -170,6 +204,11 @@ span {
     display: flex;
     justify-content: center;
     border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+}
+
+.forecast-container:hover{
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 2px 8px 0px;
 }
 
 .forecast-textbox{
@@ -187,7 +226,7 @@ span {
 }
 
 #forecast1-maxTemp, #forecast2-maxTemp, #forecast3-maxTemp, #forecast4-maxTemp, #forecast5-maxTemp {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     margin-top: -15px;
 }
 

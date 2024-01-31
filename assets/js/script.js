@@ -4,6 +4,8 @@ const todayEl = document.getElementById('today');
 const forecastDiv = document.getElementById('forecast');
 const historyDiv = document.getElementById('history');
 const buttonsDiv = document.getElementById('buttons');
+const clearBtn = document.createElement('button');
+clearBtn.setAttribute('id', 'clear-button');
 const apiKey = '65460f2d682dbe6e454f0b9ada6fd285';
 let cityName;
 let queryURL;
@@ -22,8 +24,8 @@ let history = [];
 let exists = false;
 let localString;
 let clearBtnExists = false;
-let clearBtn = document.createElement('button');
 
+//Geocode city
 function queryInfo (input) {
     const query = input;
     const geocode = `https://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${apiKey}`;
@@ -47,8 +49,9 @@ function queryInfo (input) {
     .catch((err)=>{
         alert('There is an error with your search. Check your Internet connection');
     })
-}
+};
 
+//Make a request with the city's latitde and longitude
 function weatherData (city) {
     
     queryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&units=metric&appid=${apiKey}`; 
@@ -60,16 +63,16 @@ function weatherData (city) {
           .then((result) => {  
             const current = result?.list[0];
             
-
+            //Current day
             city = {name: city.name, lat: city.lat, lon: city.lon, date: '', icon: '', temp: '', humidity: '', windSpeed: '', forecast: []}
 
             city.date = dayjs().format('ddd DD MMM YYYY');
             city.icon = `<img src="https://openweathermap.org/img/wn/${current?.weather[0].icon}@4x.png" />`;
             city.temp = `${current?.main.temp}°C`;
             city.humidity = `<span>Humidity</span> ${current?.main.humidity}%`;
-            city.windSpeed = `<span>Wind Speed</span> ${current?.wind.speed} km/h`;
+            city.windSpeed = `<span>Wind Speed</span> ${current?.wind.speed} m/s`;
 
-            // Forecast
+            //Five-day forecast
             const future = result.list;       
 
             for (i=0; i<5; i++){
@@ -83,7 +86,7 @@ function weatherData (city) {
                     let item = object.dt_txt.slice(0,10);
                     if (item===date){
                         dateArray.push(object); 
-                    }
+                    };
                 });
 
                 maxTempArray=[];
@@ -102,36 +105,39 @@ function weatherData (city) {
 
                 sortData();
 
-                forecastData.date = dayjs().add([i+1], 'day').format('ddd DD MMM YYYY');
+                //Set the forecast values
+                forecastData.date = dayjs().add([i+1], 'day').format('ddd DD MMM');
                 forecastData.maxTemp = `${sortedMax[0]} ° C`;
                 forecastData.minTemp = `${sortedMin[0]} ° C`;
                 forecastData.icon =`<img src="https://openweathermap.org/img/wn/${iconArray[0]||allIcons[0]}@2x.png" />`;
                 forecastData.humidity = `${sortedHumidity[0]}%`;
                 city.forecast.push(forecastData);
-                
-            }
+            };
+
             const previous = {name: city.name, lat: city.lat, lon: city.lon};
+
+            //Check whether city is already in the search history array and add it if it isn't
             exists = false;
+
             for (i=0; i<history.length; i++){
                 if (history[i].name === previous.name){
                     exists = true;
                 } else {
                     history;
-                }
-            }
+                };
+            };
 
             exists ? history: history.push(previous);
-            localise();
-
-            clearHistory();
             
+            //Save to local storage, add clear history button and forecast data to the page
+            localise();
+            clearHistory();
             renderData(city);
         })
         .catch((err)=>{alert(`Please try again. Error: ${err}`)});
+};
 
-
-}
-
+//Sort forecast data by ascending or descending order and filter the icons to prioritise daytime icons
 function sortData () {
     //Temperature
     sortedMax = maxTempArray.sort((a,b)=>{return b-a})
@@ -143,9 +149,11 @@ function sortData () {
 
     //Humidity
     sortedHumidity = humidArray.sort((a,b)=>{return b-a});
-}
+};
 
+//Display weather data on the page
 function renderData (data) {
+    //Current day data
     todayEl.innerHTML = '';
     let displayArray = Object.keys(data);
     let keys = displayArray.filter((key)=> !key.includes('forecast') && !key.includes('lat') && !key.includes('lon'));
@@ -162,9 +170,10 @@ function renderData (data) {
         todayTextBox.append(infoDiv);
     };
 
-    todayContainer.append(todayTextBox)
+    todayContainer.append(todayTextBox);
     todayEl.append(todayContainer);
     
+    //Five-day forecast data
     forecastDiv.innerHTML = '';
     for(i=0; i<5; i++){
         displayArray = Object.keys(data.forecast[i]);
@@ -189,8 +198,9 @@ function renderData (data) {
         
     };
         savedSearch(history);
-}
+};
 
+//Create and display previous search buttons
 function savedSearch (array){
     historyDiv.innerHTML = '';
 
@@ -202,7 +212,6 @@ function savedSearch (array){
         button.setAttribute('class', 'history-button');
         button.innerText = array[i].name;
         let cityBtn = array[i];
-  
 
         button.addEventListener('click', (e)=>{
             e.preventDefault();
@@ -211,10 +220,12 @@ function savedSearch (array){
 
         liEl.appendChild(button);
         ulEl.appendChild(liEl);
-    }
-    historyDiv.appendChild(ulEl);
-}
+    };
 
+    historyDiv.appendChild(ulEl);
+};
+
+//Set history array to local storage or retrieve it if it already exists
 function initialise (){
     let localHistory = localStorage.getItem('localHistory');
     if (localHistory){
@@ -224,23 +235,24 @@ function initialise (){
         localString = JSON.stringify(history);
         localStorage.setItem('localHistory', localString);
     };
-    
 };
 
-//Persist events between refreshes of the page
+//Save search history array to local storage
 function localise (){
     localString = JSON.stringify(history);
     localStorage.setItem('localHistory', localString);
 };
 
+//Clear the search history
 function clear (){
     history = [];
     clearBtnExists = false;
     
     localise();
     initialise();
-}
+};
 
+//Create and append the clear history button
 function clearHistory () {
     if (!clearBtnExists && history.length>0) {
             clearBtn.style.display = 'inline-block';
@@ -254,9 +266,10 @@ function clearHistory () {
             clear()});
     } else {
         clearBtn;
-    }
-}
+    };
+};
 
+//Submission button to handle the user's input
 searchBtn.addEventListener('click', (e)=>{
     e.preventDefault();
     const searchInput = document.getElementById('search-input').value.toLowerCase().trim();

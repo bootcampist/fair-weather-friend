@@ -1,7 +1,7 @@
 # weather-dashboard
 
 ## Description
-The Weather Dashboard displays the weather forecast for cities around the world using the Open Weather API. The weather is rendered to the page via JavaScript and CSS. The Open Weather API contained data for every three hours and so this was first sorted into the relevant days. The maximum temperature and humidity were calculated by sorting the data in descending order and the minimum temperature by sorting in ascending order. 
+The Weather Dashboard displays the weather forecast for cities around the world using the Open Weather API. The weather is rendered to the page via JavaScript and CSS. The Open Weather API contained data for every three hours and so this was first sorted into the relevant days. The maximum temperature and humidity were calculated by sorting the data in descending order and the minimum temperature by sorting in ascending order. The weather icons were filtered to prioritise the day icons in the five-day forecast but to display the night ones if the data for the day is not yet available.
 
 ## Installation
 
