@@ -6,6 +6,9 @@ const historyDiv = document.getElementById('history');
 const buttonsDiv = document.getElementById('buttons');
 const clearBtn = document.createElement('button');
 clearBtn.setAttribute('id', 'clear-button');
+const errorDisplay = document.getElementById('error-display');
+const errorDiv = document.createElement('div');
+errorDiv.setAttribute('id', 'error-message');
 const apiKey = '65460f2d682dbe6e454f0b9ada6fd285';
 let cityName;
 let queryURL;
@@ -24,6 +27,8 @@ let history = [];
 let exists = false;
 let localString;
 let clearBtnExists = false;
+const notFound = 'This city is not recognised. Please try again';
+const errorMsg = `There is an error with your search. <br/>Please check your Internet connection`;
 
 //Geocode city
 function queryInfo (input) {
@@ -43,12 +48,13 @@ function queryInfo (input) {
         let newCity = {name: cityName, lat: lat, lon: lon, date: '', icon: '', temp: '', humidity: '', windSpeed: '', forecast: []}
         cityArray.push(newCity);
         
-        lat ? weatherData(newCity) : alert('This city is not recognised. Please try again'); 
+        
+        lat ? weatherData(newCity) : errorMessage (notFound); 
            
     })
     .catch((err)=>{
-        alert('There is an error with your search. Check your Internet connection');
-    })
+        errorMessage (errorMsg);
+    });
 };
 
 //Make a request with the city's latitde and longitude
@@ -70,7 +76,7 @@ function weatherData (city) {
             city.icon = `<img src="https://openweathermap.org/img/wn/${current?.weather[0].icon}@4x.png" />`;
             city.temp = `${current?.main.temp}°C`;
             city.humidity = `<span>Humidity</span> ${current?.main.humidity}%`;
-            city.windSpeed = `<span>Wind Speed</span> ${current?.wind.speed} m/s`;
+            city.windSpeed = `<span>Wind Speed</span> ${(current?.wind.speed*3.6).toFixed(2)} km/h`;
 
             //Five-day forecast
             const future = result.list;       
@@ -134,7 +140,9 @@ function weatherData (city) {
             clearHistory();
             renderData(city);
         })
-        .catch((err)=>{alert(`Please try again. Error: ${err}`)});
+        .catch((err)=>{
+            errorMessage (errorMsg);
+        });
 };
 
 //Sort forecast data by ascending or descending order and filter the icons to prioritise daytime icons
@@ -267,6 +275,14 @@ function clearHistory () {
     } else {
         clearBtn;
     };
+};
+
+//Display error message
+function errorMessage (message) {
+    errorDiv.innerHTML = message;
+    errorDisplay.appendChild(errorDiv);
+    errorDiv.style.display = 'block';
+    let timeout = setTimeout(()=>{errorDiv.style.display = 'none'}, 5000);
 };
 
 //Submission button to handle the user's input
