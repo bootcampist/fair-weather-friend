@@ -76,7 +76,7 @@ function weatherData (city) {
             city.icon = `<img src="https://openweathermap.org/img/wn/${current?.weather[0].icon}@4x.png" />`;
             city.temp = `${current?.main.temp}°C`;
             city.humidity = `<span>Humidity</span> ${current?.main.humidity}%`;
-            city.windSpeed = `<span>Wind Speed</span> ${(current?.wind.speed*3.6).toFixed(2)} km/h`;
+            city.windSpeed = `<span>Wind Speed</span> ${(current?.wind.speed*3.6).toFixed(1)} km/h`;
 
             //Five-day forecast
             const future = result.list;       

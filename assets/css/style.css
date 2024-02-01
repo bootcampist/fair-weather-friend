@@ -3,6 +3,7 @@ body {
     margin: 0;
     background-image: url(../images/land02.webp);
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
     font-family: 'Roboto', sans-serif;
     color: rgb(77, 98, 168, 0.9);
@@ -15,8 +16,10 @@ body {
     flex-direction: row;
 }
 
+/* User Input */
 #search {
     width: 30vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,6 +84,7 @@ body {
     color: rgb(77, 98, 168, 0.9);
 }
 
+/* Error Message */
 #error-display{
     display: flex;
     justify-content: center;
@@ -97,6 +101,7 @@ body {
     width: 25vw;
 }
 
+/* Search History Buttons */
 ul {
     list-style: none;
     outline: none;
@@ -118,7 +123,7 @@ li {
     color: rgb(77, 98, 168, 1);
     padding: 5px;
     border-radius: 15px;
-    width: 100%;
+    width: 95%;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 8px 0px;
 }
 
@@ -127,24 +132,30 @@ li {
     color: white;
 }
 
+/* Weather Data */
 #results {
-    width: 70vw;
+    width: 68vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+/* Current Day */
 #today {
     margin-bottom: 10px;
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 68vw;
     height: 50vh;
 }
 
 #today-container {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color:  rgb(77, 98, 168, 0.3);
     border-radius: 15px;
-    width: 100%;
+    width: 70vw;
     margin: 20px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 8px 0px;
+    color: white;  
 }
 
 #today-name {grid-area: name;}
@@ -160,16 +171,19 @@ li {
     grid-template-areas:
     'name name name'
     'date date date'
-    'humidity temp icon1'
-    'wind temp icon1';
+    'humidity icon1 temp'
+    'wind icon1 temp';
     gap: 3px;
+    column-gap: 7vw;
+    justify-content: center;
     text-align: center;
     margin: auto;
     font-size: 2rem;
 }
 
 #today-name {
-    font-size: 3.7rem;
+    font-size: 4rem;
+    color: rgb(77, 98, 168, 1);
     display: flex;
     justify-content: center;
     margin-top: 10px;
@@ -182,14 +196,15 @@ li {
 }
 
 #today-icon{
-    margin: -40px 0 -40px -50px;
+    margin: -40px -40px -40px 0px;
 }
 
 #today-temp {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: -20px;
 }
 
 #today-humidity {
@@ -208,23 +223,25 @@ li {
 
 span {
     font-size: 1rem;
+    font-family: 'Times New Roman', serif;
 }
 
+/* Five-Day Forecast */
 #forecast {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+    width: 65vw;
 }
 
 .forecast-container{
-    background-color: transparent;
     backdrop-filter: blur(20px);    
     width: 18%;
     display: flex;
     justify-content: center;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+    background-color: rgba(77,98,168,0.2);
 }
 
 .forecast-container:hover, #today-container:hover {
@@ -242,7 +259,8 @@ span {
 }
 
 #forecast1-date, #forecast2-date, #forecast3-date, #forecast4-date, #forecast5-date {
-    font-size: 18px;
+    font-size: 1.25rem;
+    font-weight: 500;
 }
 
 #forecast1-maxTemp, #forecast2-maxTemp, #forecast3-maxTemp, #forecast4-maxTemp, #forecast5-maxTemp {
@@ -256,3 +274,142 @@ span {
     margin-bottom: 10px;
 }
 
+/* Responsive Styling */
+@media only screen and (max-width: 1055px){
+    body {
+        background-size: auto;
+        background-position: center;
+    }
+
+    #search {
+        width: 50vw;
+    }
+
+    .form-input, #error-message, ul, hr {
+        width: 40vw;
+    }
+
+    #search-button, #clear-button {
+        width: 15vw; 
+    }
+
+    #results, #today {
+        width: 50vw; 
+    }
+
+    #today-container {
+        background-color:rgb(77, 98, 168, 0.6);
+        color: white;
+        width: 45vw;
+    }
+
+    #today-textbox {
+        display:grid;
+        grid-template-areas:
+        'name name name name'
+        'date date date date'
+        'icon1 icon1 icon1 icon1'
+        'temp temp temp temp'
+        'humidity humidity wind wind';  
+    }
+
+    #today-name {
+        color: white;
+    }
+
+    #today-temp {
+        font-size: 4rem;
+    }
+    
+    #today-humidity {
+        font-size: 1.5rem;
+
+    }
+    
+    #today-windSpeed {
+        font-size: 1.5rem;
+    }
+
+    #today-icon img {
+        height: 170px;
+    }
+
+    #forecast-container-1 {grid-area: forecast1;}
+    #forecast-container-2 {grid-area: forecast2;}
+    #forecast-container-3 {grid-area: forecast3;}
+    #forecast-container-4 {grid-area: forecast4;}
+    #forecast-container-5 {grid-area: forecast5;}
+
+    #forecast {
+        display:grid;
+        grid-template-areas:
+        'forecast1 forecast2'
+        'forecast3 forecast4'
+        'forecast5 forecast5';
+        column-gap: 1.5vh;
+        row-gap: 1.5vh;
+        justify-content: center;
+        text-align: center;
+        height: 60vh;
+        width: 70vw;
+    }
+
+    .forecast-container{   
+        width: 15vh;
+    }
+
+    #forecast-container-1, #forecast-container-2 {
+        margin-top: -15px;
+    }
+}
+
+@media only screen and (max-width: 767px){
+    #container {
+        flex-direction: column;
+    }
+
+    #search {
+        width: 100vw;
+    }
+
+    .form-input, #error-message, ul {
+        width: 90vw;
+    }
+
+    #search-button, #clear-button {
+        width: 40vw; 
+    }
+
+    #results, #today, #today-container {
+        width: 100vw;  
+    }
+
+    #today {
+        height: 60vh;
+    } 
+
+    #today-icon {
+        margin: -40px 0;
+    }
+
+    #today-temp {
+        font-size: 3rem;
+    }
+
+    #forecast {
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 100vw;
+        height:100%;
+    }
+
+    .forecast-container{   
+        width: 70vw;
+    }
+
+    #forecast-container-2 {
+        margin-top: 0px;
+    }
+}
