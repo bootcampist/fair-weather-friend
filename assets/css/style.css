@@ -154,7 +154,7 @@ li {
     border-radius: 15px;
     width: 70vw;
     margin: 20px;
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 8px 0px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 8px 0px;
     color: white;  
 }
 
@@ -223,7 +223,6 @@ li {
 
 span {
     font-size: 1rem;
-    font-family: 'Times New Roman', serif;
 }
 
 /* Five-Day Forecast */
@@ -275,13 +274,38 @@ span {
 }
 
 /* Responsive Styling */
-@media only screen and (max-width: 1055px){
+@media only screen and (max-width: 1077px){
+    #forecast1-date, #forecast2-date, #forecast3-date, #forecast4-date, #forecast5-date {
+        font-size: 1.1rem;
+        font-weight: 300;
+    }
+}
+
+@media only screen and (max-width: 972px){
+    #today-humidity, #today-windSpeed {
+        font-size: 1.2rem;
+    }
+   
+    #today-temp {
+        font-size: 2.7rem;
+    }
+
+    #today-icon {
+        margin-left: -20px;
+    }
+
+    #forecast1-date, #forecast2-date, #forecast3-date, #forecast4-date, #forecast5-date {
+        font-size: 0.9rem;
+    }
+}
+
+@media only screen and (max-width: 650px){
     body {
         background-size: auto;
         background-position: center;
     }
 
-    #search {
+    #search, #results, #today {
         width: 50vw;
     }
 
@@ -291,10 +315,6 @@ span {
 
     #search-button, #clear-button {
         width: 15vw; 
-    }
-
-    #results, #today {
-        width: 50vw; 
     }
 
     #today-container {
@@ -311,23 +331,25 @@ span {
         'icon1 icon1 icon1 icon1'
         'temp temp temp temp'
         'humidity humidity wind wind';  
+        margin-bottom: 20px;
     }
 
     #today-name {
         color: white;
+        font-size: 2.8rem;
+
     }
 
     #today-temp {
-        font-size: 4rem;
+        font-size: 2.3rem;
     }
     
-    #today-humidity {
+    #today-humidity, #today-windSpeed {
         font-size: 1.5rem;
+    }
 
-    }
-    
-    #today-windSpeed {
-        font-size: 1.5rem;
+    #today-icon {
+        margin-bottom: -40px;
     }
 
     #today-icon img {
@@ -358,12 +380,9 @@ span {
         width: 15vh;
     }
 
-    #forecast-container-1, #forecast-container-2 {
-        margin-top: -15px;
-    }
 }
 
-@media only screen and (max-width: 767px){
+@media only screen and (max-width: 480px){
     #container {
         flex-direction: column;
     }
