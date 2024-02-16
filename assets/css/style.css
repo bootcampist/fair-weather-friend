@@ -1,3 +1,4 @@
+/* General styling for the whole page */
 body {
     padding:0;
     margin: 0;
@@ -61,6 +62,7 @@ body {
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 8px 0px;
 }
 
+/* Styling for the button to clear the search history */
 #clear-button {
     background-color: rgb(77, 98, 168, 0.9);
     color: white;
@@ -74,6 +76,7 @@ body {
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 8px 0px;
 }
 
+/* Hover effects for the buttons */
 #search-button:hover {
     background-color: rgba(255, 255, 255, 0.9);
     color: #ec6e4c;
@@ -84,7 +87,7 @@ body {
     color: rgb(77, 98, 168, 0.9);
 }
 
-/* Error Message */
+/* Error Message Styling */
 #error-display{
     display: flex;
     justify-content: center;
@@ -149,6 +152,7 @@ li {
     height: 50vh;
 }
 
+/* Container to hold all the current day data */
 #today-container {
     background-color:  rgb(77, 98, 168, 0.3);
     border-radius: 15px;
@@ -158,6 +162,7 @@ li {
     color: white;  
 }
 
+/* Grid to hold the current day information */
 #today-name {grid-area: name;}
 #today-date {grid-area: date;}
 #today-icon {grid-area: icon1;}
@@ -181,6 +186,7 @@ li {
     font-size: 2rem;
 }
 
+/* Styling for the current day section */
 #today-name {
     font-size: 4rem;
     color: rgb(77, 98, 168, 1);
@@ -221,6 +227,7 @@ li {
     align-items: center;
 }
 
+/* Styling for the wind speed and humidity titles */
 span {
     font-size: 1rem;
 }
@@ -243,10 +250,12 @@ span {
     background-color: rgba(77,98,168,0.2);
 }
 
+/* Shadow effect on hover of the forecast cards */
 .forecast-container:hover, #today-container:hover {
     box-shadow: rgba(0, 0, 0, 0.6) 0px 2px 8px 0px;
 }
 
+/* Styling for the div holding each day's information */
 .forecast-textbox{
     margin: 10px ;
     color: white;
@@ -257,6 +266,7 @@ span {
     padding: 0;
 }
 
+/* Styling for the dates and temperatures */
 #forecast1-date, #forecast2-date, #forecast3-date, #forecast4-date, #forecast5-date {
     font-size: 1.25rem;
     font-weight: 500;
@@ -275,6 +285,7 @@ span {
 
 /* Responsive Styling */
 @media only screen and (max-width: 1077px){
+    /* Reduce date size for smaller screens */
     #forecast1-date, #forecast2-date, #forecast3-date, #forecast4-date, #forecast5-date {
         font-size: 1.1rem;
         font-weight: 300;
@@ -282,6 +293,7 @@ span {
 }
 
 @media only screen and (max-width: 972px){
+    /* The current day styling for smaller screens */
     #today-humidity, #today-windSpeed {
         font-size: 1.2rem;
     }
@@ -294,17 +306,20 @@ span {
         margin-left: -20px;
     }
 
+    /* The forecast dates styling for smaller screens */
     #forecast1-date, #forecast2-date, #forecast3-date, #forecast4-date, #forecast5-date {
         font-size: 0.9rem;
     }
 }
 
 @media only screen and (max-width: 650px){
+    /* Change the picture display for smaller screens */
     body {
         background-size: auto;
         background-position: center;
     }
 
+    /* Change the layout of the three main sections of the page for smaller screens */
     #search, #results, #today {
         width: 50vw;
     }
@@ -317,6 +332,7 @@ span {
         width: 15vw; 
     }
 
+    /* Altered styling for the current day section */
     #today-container {
         background-color:rgb(77, 98, 168, 0.6);
         color: white;
@@ -356,6 +372,7 @@ span {
         height: 170px;
     }
 
+    /* Change the forecast section from flexbox to grid */
     #forecast-container-1 {grid-area: forecast1;}
     #forecast-container-2 {grid-area: forecast2;}
     #forecast-container-3 {grid-area: forecast3;}
@@ -382,11 +399,13 @@ span {
 
 }
 
+/* Styling for the smallest devices */
 @media only screen and (max-width: 480px){
     #container {
         flex-direction: column;
     }
 
+    /* Styling for the form section */
     #search {
         width: 100vw;
     }
@@ -399,10 +418,12 @@ span {
         width: 40vw; 
     }
 
+    /* Styling for the results and current day sections */
     #results, #today, #today-container {
         width: 100vw;  
     }
 
+    /* Styling for the current day section */
     #today {
         height: 60vh;
     } 
@@ -415,6 +436,7 @@ span {
         font-size: 3rem;
     }
 
+    /* Styling for the five-day forecast section */
     #forecast {
         display:flex;
         flex-direction: column;
