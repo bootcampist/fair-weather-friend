@@ -289,7 +289,7 @@ function errorMessage (message) {
 searchBtn.addEventListener('click', (e)=>{
     e.preventDefault();
     const searchInput = document.getElementById('search-input').value.toLowerCase().trim();
-    const userQuery = searchInput.split(' ').join('');
+    const userQuery = searchInput;
     queryInfo(userQuery);
 });
 
